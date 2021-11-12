@@ -42,3 +42,7 @@ resource "aws_eip" "ryujy_weba_ip" {
   ]
   
 }
+
+output "public_ip" {
+  value = aws_instance.ryujy_weba.public_ip
+}
