@@ -24,13 +24,7 @@ resource "aws_instance" "ryujy_weba" {
   private_ip = "10.0.0.11"
   subnet_id = aws_subnet.ryujy_puba.id
   vpc_security_group_ids = [aws_security_group.ryujy_sg.id]
-  user_data = <<-EOF
-              #!/bin/bash
-              sudo su -
-              yum install httpd -y
-              echo "RYUJY-Terraform-1" > /var/www/html/index.html
-              systemctl start httpd
-              EOF
+  user_data = file("./intall.sh")
 }
 
 resource "aws_eip" "ryujy_weba_ip" {
